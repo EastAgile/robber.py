@@ -15,6 +15,7 @@ __all__ = [
     'numbers',
     'regexp',
     'respond_to',
+    'similar_to',
     'truthy',
     'types',
 ]
@@ -34,5 +35,6 @@ from robber.matchers.length import *  # noqa F403
 from robber.matchers.numbers import *  # noqa F403
 from robber.matchers.regexp import *  # noqa F403
 from robber.matchers.respond_to import *  # noqa F403
+from robber.matchers.similar_to import *  # noqa F403
 from robber.matchers.truthy import *  # noqa F403
 from robber.matchers.types import *  # noqa F403

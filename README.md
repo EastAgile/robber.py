@@ -280,6 +280,14 @@ expect(mock).to.have.been.ever_called_with(*args, **kwargs)
 expect(mock).to.have.any_call(*args, **kwargs)
 ```
 
+#### similar_to
+
+Asserts that two strings are similar.
+
+```python
+expect('  a  CA t   ').to.be.similar_to('a c A  t')
+```
+
 ### Language chains
 
 In order to write more readable assertions, there are a few
