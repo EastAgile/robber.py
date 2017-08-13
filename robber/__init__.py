@@ -18,7 +18,7 @@ try:  # pragma: no cover
     import traceback
     from IPython.core.interactiveshell import InteractiveShell
 
-    def showtraceback(self):
+    def showtraceback(self, running_compiled_code=False):
         traceback_lines = traceback.format_exception(*sys.exc_info())
         sys.stderr.write(traceback_lines[-1])
 

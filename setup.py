@@ -4,7 +4,8 @@ import os
 
 from setuptools import setup
 
-long_description = 'BDD / TDD assertion library for Python',
+long_description = 'BDD / TDD assertion library for Python'
+
 if os.path.exists('README.rst'):
     long_description = open('README.rst').read()
 

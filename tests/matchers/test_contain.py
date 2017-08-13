@@ -57,18 +57,3 @@ Expected A to exclude B
     def test_register(self):
         expect(expect.matcher('contain')) == Contain
         expect(expect.matcher('exclude')) == Contain
-
-
-class TestGetFirst(TestCase):
-    def test_with_empty_set(self):
-        success, first = Contain._get_first(set())
-
-        expect(success).to.eq(False)
-        expect(first).to.eq(None)
-
-    def test_with_normal_set(self):
-        # We need to support Python 2.6, so set literal cannot be used here.
-        success, first = Contain._get_first(set([1, 2]))
-
-        expect(success).to.eq(True)
-        expect(first).to.eq(1)
