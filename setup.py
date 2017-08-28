@@ -11,7 +11,7 @@ if os.path.exists('README.rst'):
 
 setup(
     name='robber',
-    version='1.1.2',
+    version='1.1.3',
     description='BDD / TDD assertion library for Python',
     long_description=long_description,
     author='Tao Liang',
