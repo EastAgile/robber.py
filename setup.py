@@ -4,13 +4,14 @@ import os
 
 from setuptools import setup
 
-long_description = 'BDD / TDD assertion library for Python',
+long_description = 'BDD / TDD assertion library for Python'
+
 if os.path.exists('README.rst'):
     long_description = open('README.rst').read()
 
 setup(
     name='robber',
-    version='1.1.2',
+    version='1.1.3',
     description='BDD / TDD assertion library for Python',
     long_description=long_description,
     author='Tao Liang',

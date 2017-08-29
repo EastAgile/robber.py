@@ -12,26 +12,22 @@ class Contain(Base):
     def matches(self):
         expected_list = list(self.args)
         expected_list.insert(0, self.expected)
+        self.expected_arg = None
 
         if not self.is_negative:
-            # run when contain chain triggered
-            elements = set(expected_list).difference(self.actual)
+            for expected in expected_list:
+                if expected not in self.actual:
+                    self.expected_arg = expected
+                    break
 
         else:
-            # run when not contain/excluded chain triggered
-            elements = set(expected_list).intersection(self.actual)
+            for expected in expected_list:
+                if expected in self.actual:
+                    self.expected_arg = expected
+                    break
 
-        existed, self.expected_arg = self._get_first(elements)
+        existed = self.expected_arg is not None
         return existed is self.is_negative
-
-    @staticmethod
-    def _get_first(elements):
-        try:
-            first_element = elements.pop()
-        except KeyError:
-            return False, None
-        else:
-            return True, first_element
 
     @property
     def explanation(self):
