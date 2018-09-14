@@ -42,20 +42,24 @@ class Equal(Base):
 
     @property
     def dict_diffs(self):
-        if len(self.actual) != len(self.expected):
-            return 'A and B does not have the same length'
+        a_keys = self.actual.keys()
+        b_keys = self.expected.keys()
+        for key in a_keys:
+            if key not in b_keys:
+                return "A has key '%s' while B does not" % key
+        for key in b_keys:
+            if key not in a_keys:
+                return "B has key '%s' while A does not" % key
 
         for k in self.actual:
-            try:
-                val_a = self.actual[k]
-                val_b = self.expected[k]
-                if not val_a == val_b:
-                    return """Diffs:
-A['{key}'] = {val_a}
-B['{key}'] = {val_b}
-""".format(key=k, val_a=val_a, val_b=val_b)
-            except KeyError:
-                return "A has key '{k}' while B does not".format(k=k)
+            val_a = self.actual[k]
+            val_b = self.expected[k]
+            if not val_a == val_b:
+                return (
+                    'Diffs:\n'
+                    'A[\'{key}\'] = {val_a}\n'
+                    'B[\'{key}\'] = {val_b}\n'
+                ).format(key=k, val_a=val_a, val_b=val_b)
 
     @property
     def list_diffs(self):
