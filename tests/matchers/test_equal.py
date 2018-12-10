@@ -22,11 +22,17 @@ class TestEqual:
 
 
 class TestDictDiff:
-    def test_dict_diffs_with_different_length(self):
+    def test_dict_diffs_with_missing_key(self):
         d1 = {'a': 1}
         d2 = {'a': 1, 'b': 2}
         equal = Equal(d1, d2)
-        expect(equal.dict_diffs).to.eq('A and B does not have the same length')
+        expect(equal.dict_diffs).to.eq("B has key 'b' while A does not")
+
+    def test_dict_diffs_with_extra_key(self):
+        d1 = {'a': 1, 'c': 3}
+        d2 = {'a': 1}
+        equal = Equal(d1, d2)
+        expect(equal.dict_diffs).to.eq("A has key 'c' while B does not")
 
     def test_dict_diffs_with_different_key(self):
         d1 = {'a': 1, 'c': 2}
@@ -38,10 +44,11 @@ class TestDictDiff:
         d1 = {'a': 1, 'b': 2}
         d2 = {'a': 1, 'b': 3}
         equal = Equal(d1, d2)
-        expect(equal.dict_diffs).to.eq("""Diffs:
-A['b'] = 2
-B['b'] = 3
-""")
+        expect(equal.dict_diffs).to.eq(
+            'Diffs:\n'
+            "A['b'] = 2\n"
+            "B['b'] = 3\n"
+        )
 
 
 class TestListDiff:
