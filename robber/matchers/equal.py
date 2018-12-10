@@ -6,7 +6,7 @@ from robber.matchers.base import Base
 
 try:
     from collections import OrderedDict
-except ImportError:
+except ImportError:  # pragma: no cover
     ordered_dict_available = False
 else:
     ordered_dict_available = True
